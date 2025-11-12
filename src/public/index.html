@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Home — Get a free home estimate</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="logo">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M20 5L5 15v15l15 5 15-5V15L20 5z" fill="#0077B6"/>
+            <path d="M20 10L10 17v10l10 3 10-3V17L20 10z" fill="#00A4EF"/>
+            <circle cx="20" cy="22" r="4" fill="white"/>
+          </svg>
+          <span class="logo-text">HomeFind</span>
+        </div>
+      </div>
+    </nav>
+
+    <main class="hero">
+      <div class="card">
+        <h1 class="brand">Find your next home</h1>
+        <p class="lead">Get a free, no-obligation estimate — no spam, just results.</p>
+
+        <form id="leadForm" class="form" method="post" action="/api/lead">
+          <div class="field">
+            <label for="name">Full Name *</label>
+            <input id="name" name="name" type="text" required placeholder="John Doe" />
+          </div>
+          <div class="field">
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required placeholder="john@example.com" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number *</label>
+            <input id="phone" name="phone" type="tel" required placeholder="(555) 123-4567" />
+          </div>
+          <div class="field">
+            <label for="city">City *</label>
+            <input id="city" name="city" type="text" required placeholder="San Francisco" />
+          </div>
+          <div class="field">
+            <label for="state">State *</label>
+            <select id="state" name="state" required>
+              <option value="">Select a state</option>
+              <option value="CA">California</option>
+              <option value="NY">New York</option>
+              <option value="TX">Texas</option>
+              <option value="FL">Florida</option>
+              <option value="WA">Washington</option>
+              <option value="IL">Illinois</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="OH">Ohio</option>
+              <option value="GA">Georgia</option>
+              <option value="NC">North Carolina</option>
+              <option value="MI">Michigan</option>
+              <option value="NJ">New Jersey</option>
+              <option value="VA">Virginia</option>
+              <option value="AZ">Arizona</option>
+              <option value="MA">Massachusetts</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="propertyType">Property Type</label>
+            <select id="propertyType" name="propertyType">
+              <option value="">Select type</option>
+              <option value="single-family">Single Family Home</option>
+              <option value="condo">Condo</option>
+              <option value="townhouse">Townhouse</option>
+              <option value="multi-family">Multi-Family</option>
+              <option value="land">Land</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+              <option value="">Select range</option>
+              <option value="0-250k">Under $250k</option>
+              <option value="250k-500k">$250k - $500k</option>
+              <option value="500k-750k">$500k - $750k</option>
+              <option value="750k-1m">$750k - $1M</option>
+              <option value="1m+">$1M+</option>
+            </select>
+          </div>
+          <div class="field field-full">
+            <label for="message">Additional Information</label>
+            <textarea id="message" name="message" rows="3" placeholder="Tell us more about what you're looking for..."></textarea>
+          </div>
+          <button class="btn primary" type="submit">Get my estimate</button>
+        </form>
+
+        <div class="aesthetic">
+          <svg viewBox="0 0 600 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0%" stop-color="#0077B6" />
+                <stop offset="100%" stop-color="#00A4EF" />
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="600" height="200" fill="url(#g1)" opacity="0.12" />
+          </svg>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>About HomeFind</h3>
+          <p>Your trusted partner in finding the perfect home. We connect buyers with their dream properties.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: info@homefind.com</p>
+          <p>Phone: (555) 123-4567</p>
+          <p>Address: 123 Real Estate Ave, Suite 100</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 HomeFind. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+      <button class="chat-button" id="chatButton" aria-label="Open chat">
+        <svg class="chat-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+          <div class="chat-header-content">
+            <div class="chat-avatar">
+              <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="20" fill="#0077B6"/>
+                <path d="M20 5L5 15v15l15 5 15-5V15L20 5z" fill="#00A4EF" opacity="0.5"/>
+                <circle cx="20" cy="20" r="6" fill="white"/>
+              </svg>
+            </div>
+            <div>
+              <h4>HomeFind Support</h4>
+              <p class="status">Online</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            <div class="message-content">
+              Hi! Welcome to HomeFind. How can we help you find your dream home today?
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-container">
+          <input
+            type="text"
+            class="chat-input"
+            id="chatInput"
+            placeholder="Type your message..."
+            autocomplete="off"
+          />
+          <button class="chat-send" id="chatSend" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>
