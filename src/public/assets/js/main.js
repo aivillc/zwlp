@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = new FormData(form);
 
     const payload = {
-      name: data.get('name'),
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
       email: data.get('email'),
       phone: data.get('phone'),
       city: data.get('city'),
