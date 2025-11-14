@@ -11,7 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Interface for lead data
 interface LeadData {
-  name?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
   phone?: string;
   city?: string;
@@ -26,7 +27,7 @@ app.post('/api/lead', async (req: Request, res: Response) => {
   const leadData = req.body as LeadData;
 
   // Validate required fields
-  if (!leadData.name || !leadData.email || !leadData.phone || !leadData.city || !leadData.state) {
+  if (!leadData.firstName || !leadData.lastName || !leadData.email || !leadData.phone || !leadData.city || !leadData.state) {
     return res.status(400).json({
       ok: false,
       message: 'Please fill in all required fields'
@@ -35,7 +36,8 @@ app.post('/api/lead', async (req: Request, res: Response) => {
 
   // Log the lead data
   console.log('Lead received:', {
-    name: leadData.name,
+    firstName: leadData.firstName,
+    lastName: leadData.lastName,
     email: leadData.email,
     phone: leadData.phone,
     city: leadData.city,
