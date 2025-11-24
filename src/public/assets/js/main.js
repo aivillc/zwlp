@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
       state: data.get('state'),
       propertyType: data.get('propertyType'),
       budget: data.get('budget'),
-      message: data.get('message')
+      message: data.get('message'),
+      communicationPreference: data.get('communicationPreference')
     };
 
     const btn = form.querySelector('button[type="submit"]');

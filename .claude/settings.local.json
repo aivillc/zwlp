@@ -13,7 +13,8 @@
       "Bash(gh auth:*)",
       "Bash(git push)",
       "Bash(npx vercel --prod)",
-      "Bash(npx vercel --prod --yes)"
+      "Bash(npx vercel --prod --yes)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []

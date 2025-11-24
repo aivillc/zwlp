@@ -20,6 +20,7 @@ interface LeadData {
   propertyType?: string;
   budget?: string;
   message?: string;
+  communicationPreference?: string;
 }
 
 // Simple API endpoint to capture lead data
@@ -27,7 +28,7 @@ app.post('/api/lead', async (req: Request, res: Response) => {
   const leadData = req.body as LeadData;
 
   // Validate required fields
-  if (!leadData.firstName || !leadData.lastName || !leadData.email || !leadData.phone || !leadData.city || !leadData.state) {
+  if (!leadData.firstName || !leadData.lastName || !leadData.email || !leadData.phone || !leadData.city || !leadData.state || !leadData.communicationPreference) {
     return res.status(400).json({
       ok: false,
       message: 'Please fill in all required fields'
@@ -44,7 +45,8 @@ app.post('/api/lead', async (req: Request, res: Response) => {
     state: leadData.state,
     propertyType: leadData.propertyType || 'Not specified',
     budget: leadData.budget || 'Not specified',
-    message: leadData.message || 'No additional message'
+    message: leadData.message || 'No additional message',
+    communicationPreference: leadData.communicationPreference
   });
 
   // Send to webhook

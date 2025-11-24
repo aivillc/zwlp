@@ -130,6 +130,21 @@
             <label for="message">Additional Information</label>
             <textarea id="message" name="message" rows="3" placeholder="Tell us more about what you're looking for..."></textarea>
           </div>
+          <div class="field field-full">
+            <label class="field-label">Communication Preferences *</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="communicationPreference" value="call" required />
+                <span class="radio-custom"></span>
+                <span class="radio-label">Call</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="communicationPreference" value="text" />
+                <span class="radio-custom"></span>
+                <span class="radio-label">Text</span>
+              </label>
+            </div>
+          </div>
           <button class="btn primary" type="submit">Get my estimate</button>
         </form>
 

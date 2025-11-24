@@ -357,6 +357,85 @@ body::before{
   padding-right:40px;
 }
 
+/* Radio Button Styles */
+.radio-group{
+  display:flex;
+  gap:24px;
+  margin-top:8px;
+}
+
+.radio-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  padding:12px 20px;
+  border:2px solid #e6edf6;
+  border-radius:10px;
+  background:#fff;
+  transition:all 0.3s ease;
+  flex:1;
+  position:relative;
+}
+
+.radio-option:hover{
+  border-color:var(--zillow-accent);
+  background:#f8fbff;
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,119,182,0.1);
+}
+
+.radio-option input[type="radio"]{
+  position:absolute;
+  opacity:0;
+  cursor:pointer;
+}
+
+.radio-custom{
+  width:20px;
+  height:20px;
+  border:2px solid #cbd5e1;
+  border-radius:50%;
+  position:relative;
+  transition:all 0.3s ease;
+  flex-shrink:0;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-custom{
+  border-color:var(--zillow-blue);
+  background:var(--zillow-blue);
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-custom::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:white;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-label{
+  color:var(--zillow-blue);
+  font-weight:600;
+}
+
+.radio-option:has(input[type="radio"]:checked){
+  border-color:var(--zillow-blue);
+  background:rgba(0,119,182,0.05);
+  box-shadow:0 0 0 3px rgba(0,119,182,0.1);
+}
+
+.radio-label{
+  font-size:15px;
+  font-weight:500;
+  color:var(--dark);
+  transition:all 0.3s ease;
+}
+
 /* Button Styles */
 .btn{
   padding:16px 32px;
@@ -761,6 +840,11 @@ body::before{
   .field-full,
   .btn.primary{
     grid-column:auto;
+  }
+
+  .radio-group{
+    flex-direction:column;
+    gap:12px;
   }
 
   .aesthetic{
