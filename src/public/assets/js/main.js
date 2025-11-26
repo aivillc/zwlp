@@ -21,9 +21,58 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Form submission
-  form.addEventListener('submit', async (ev) => {
-    ev.preventDefault();
+  // Schedule functionality
+  const scheduleBtn = document.getElementById('scheduleBtn');
+  const schedulePicker = document.getElementById('schedulePicker');
+  const scheduleClose = document.getElementById('scheduleClose');
+  const scheduleConfirm = document.getElementById('scheduleConfirm');
+  const scheduleDate = document.getElementById('scheduleDate');
+  const scheduleTime = document.getElementById('scheduleTime');
+
+  // Set minimum date to today
+  if (scheduleDate) {
+    const today = new Date().toISOString().split('T')[0];
+    scheduleDate.setAttribute('min', today);
+  }
+
+  // Toggle schedule picker
+  if (scheduleBtn && schedulePicker) {
+    scheduleBtn.addEventListener('click', () => {
+      schedulePicker.style.display = schedulePicker.style.display === 'none' ? 'block' : 'none';
+      if (schedulePicker.style.display === 'block') {
+        schedulePicker.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
+
+  // Close schedule picker
+  if (scheduleClose && schedulePicker) {
+    scheduleClose.addEventListener('click', () => {
+      schedulePicker.style.display = 'none';
+    });
+  }
+
+  // Handle scheduled submission
+  if (scheduleConfirm) {
+    scheduleConfirm.addEventListener('click', async () => {
+      // Validate form fields first
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Validate schedule fields
+      if (!scheduleDate.value || !scheduleTime.value) {
+        showNotification('Please select both a date and time for your scheduled call.', 'error');
+        return;
+      }
+
+      await submitForm(true);
+    });
+  }
+
+  // Helper function to submit form
+  async function submitForm(isScheduled = false) {
     const data = new FormData(form);
 
     const payload = {
@@ -39,15 +88,21 @@ document.addEventListener('DOMContentLoaded', () => {
       communicationPreference: data.get('communicationPreference')
     };
 
-    const btn = form.querySelector('button[type="submit"]');
+    // Add schedule data if scheduled
+    if (isScheduled && scheduleDate && scheduleTime) {
+      payload.scheduledDate = scheduleDate.value;
+      payload.scheduledTime = scheduleTime.value;
+      payload.isScheduled = true;
+    }
+
+    const btn = isScheduled ? scheduleConfirm : form.querySelector('button[type="submit"]');
     const originalText = btn ? btn.textContent : '';
     if (btn) {
       btn.setAttribute('disabled', 'true');
-      btn.textContent = 'Submitting...';
+      btn.textContent = isScheduled ? 'Scheduling...' : 'Connecting...';
     }
 
     try {
-      // Submit to API (server will handle webhook)
       const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -56,9 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const body = await res.json();
 
       if (res.ok) {
-        // Show success message
-        showNotification('Thank you! Your information has been received. We\'ll contact you soon.', 'success');
+        if (isScheduled) {
+          const dateObj = new Date(scheduleDate.value + 'T' + scheduleTime.value);
+          const formattedDate = dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+          const formattedTime = dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          showNotification(`Your call has been scheduled for ${formattedDate} at ${formattedTime}. We'll contact you then!`, 'success');
+          schedulePicker.style.display = 'none';
+        } else {
+          showNotification('Thank you! We\'ll connect you with an advertiser shortly.', 'success');
+        }
         form.reset();
+        if (scheduleDate) scheduleDate.value = '';
+        if (scheduleTime) scheduleTime.value = '';
       } else {
         showNotification(body.message || 'Something went wrong. Please try again.', 'error');
       }
@@ -71,6 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = originalText;
       }
     }
+  }
+
+  // Form submission (Connect with Advertiser)
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    await submitForm(false);
   });
 
   // Custom notification function

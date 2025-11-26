@@ -471,6 +471,231 @@ body::before{
   transform:none;
 }
 
+/* Button Group */
+.button-group{
+  grid-column:span 2;
+  display:flex;
+  gap:12px;
+}
+
+.button-group .btn{
+  flex:1;
+}
+
+.btn.secondary{
+  background:#fff;
+  color:var(--zillow-blue);
+  border:2px solid var(--zillow-blue);
+  box-shadow:0 4px 15px rgba(0,119,182,0.1);
+}
+
+.btn.secondary:hover{
+  background:rgba(0,119,182,0.05);
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(0,119,182,0.2);
+}
+
+/* Schedule Picker */
+.schedule-picker{
+  grid-column:span 2;
+  background:#f8fafc;
+  border:2px solid var(--zillow-accent);
+  border-radius:12px;
+  padding:24px;
+  margin-top:16px;
+  animation:fadeInUp 0.3s ease;
+}
+
+.schedule-picker-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.schedule-picker-header h4{
+  color:var(--zillow-blue);
+  font-size:18px;
+  font-weight:600;
+  margin:0;
+}
+
+.schedule-close{
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  padding:4px;
+  color:var(--muted);
+  transition:all 0.3s ease;
+  border-radius:4px;
+}
+
+.schedule-close:hover{
+  color:var(--dark);
+  background:rgba(0,0,0,0.05);
+}
+
+.schedule-fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.schedule-field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.schedule-field label{
+  font-size:14px;
+  font-weight:600;
+  color:var(--dark);
+}
+
+.schedule-field input,
+.schedule-field select{
+  padding:12px 16px;
+  border-radius:10px;
+  border:2px solid #e6edf6;
+  background:#fff;
+  font-family:inherit;
+  font-size:15px;
+  transition:all 0.3s ease;
+  outline:none;
+}
+
+.schedule-field input:focus,
+.schedule-field select:focus{
+  border-color:var(--zillow-accent);
+  box-shadow:0 0 0 3px rgba(0,164,239,0.1);
+}
+
+.schedule-field select{
+  cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%236b7280' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  padding-right:40px;
+}
+
+.schedule-confirm{
+  width:100%;
+}
+
+/* Call Info Section */
+.call-info-section{
+  margin-top:32px;
+  padding-top:32px;
+  border-top:1px solid #e6edf6;
+}
+
+.call-info-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--zillow-blue);
+  font-size:18px;
+  font-weight:600;
+  margin:0 0 24px 0;
+}
+
+.call-info-title svg{
+  color:var(--zillow-blue);
+}
+
+.call-flow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:24px;
+  background:#f8fafc;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+.call-step{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+
+.call-step-icon{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:#fff;
+  border:2px solid #e6edf6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--dark);
+  transition:all 0.3s ease;
+}
+
+.call-step-icon.ai-host{
+  background:linear-gradient(135deg,var(--zillow-blue),var(--zillow-accent));
+  border-color:var(--zillow-blue);
+  color:white;
+}
+
+.call-step-icon.partner{
+  background:#f0f9ff;
+  border-color:var(--zillow-accent);
+  color:var(--zillow-blue);
+}
+
+.call-step-label{
+  font-size:12px;
+  font-weight:600;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+.call-arrow{
+  color:var(--zillow-accent);
+  animation:pulseArrow 2s ease-in-out infinite;
+}
+
+@keyframes pulseArrow{
+  0%,100%{opacity:0.5;transform:translateX(0)}
+  50%{opacity:1;transform:translateX(3px)}
+}
+
+.call-description{
+  margin-bottom:16px;
+}
+
+.call-description p{
+  color:var(--dark);
+  font-size:14px;
+  line-height:1.7;
+  margin:0;
+}
+
+.call-description strong{
+  color:var(--zillow-blue);
+}
+
+.call-consent{
+  background:#f8fafc;
+  border-radius:8px;
+  padding:12px 16px;
+  border-left:3px solid var(--zillow-accent);
+}
+
+.call-consent p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  margin:0;
+}
+
 /* Aesthetic decoration */
 .aesthetic{
   position:absolute;
@@ -845,6 +1070,33 @@ body::before{
   .radio-group{
     flex-direction:column;
     gap:12px;
+  }
+
+  .button-group{
+    flex-direction:column;
+    grid-column:auto;
+  }
+
+  .schedule-fields{
+    grid-template-columns:1fr;
+  }
+
+  .schedule-picker{
+    grid-column:auto;
+  }
+
+  .call-flow{
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .call-arrow{
+    transform:rotate(90deg);
+  }
+
+  @keyframes pulseArrow{
+    0%,100%{opacity:0.5;transform:rotate(90deg) translateX(0)}
+    50%{opacity:1;transform:rotate(90deg) translateX(3px)}
   }
 
   .aesthetic{
